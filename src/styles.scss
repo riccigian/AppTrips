@@ -1,0 +1,28 @@
+/* You can add global styles to this file, and also import other style files */
+@import "variables";
+
+body {
+  background: $bodyBackground;
+  font-family: $fontFamily;
+
+  .trip,
+  .item {
+    background: $white;
+  }
+}
+
+.app-button {
+  font-size: 16px;
+  font-family: $fontFamily;
+  padding: 0.5rem 1rem;
+  border-radius: $borderRadius;
+  background-color: $blue;
+  color: $white;
+  border: none;
+  cursor: pointer;
+  transition: $backgroudColorTransition;
+
+  &:hover {
+    background-color: $buttonBlueHover;
+  }
+}

@@ -1,0 +1,67 @@
+@import "variables";
+
+.container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 20px;
+
+  .item {
+    display: flex;
+    align-items: center;
+    width: 90%;
+    border: $itemsBorder;
+    border-radius: $borderRadius;
+    box-shadow: $baseShadow;
+    padding: 10px;
+    transition: box-shadow 0.3s ease;
+
+    &:hover {
+      box-shadow: $hoverShadow;
+      cursor: pointer;
+    }
+
+    .image {
+      min-width: 200px;
+      min-height: 200px;
+    }
+
+    .content {
+      width: 100%;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+
+      .details {
+        text-align: center;
+
+        .title {
+          font-size: 20px;
+          font-weight: bold;
+          padding-block-end: 8px;
+        }
+      }
+
+      .badge {
+        padding: 20px;
+      }
+    }
+  }
+}
+
+/* For tablet view */
+@media (min-width: 768px) {
+  .container {
+    .item {
+      max-width: 90%;
+    }
+  }
+}
+/* For desktop view */
+@media (min-width: 1024px) {
+  .container {
+    .item {
+      max-width: 80%;
+    }
+  }
+}

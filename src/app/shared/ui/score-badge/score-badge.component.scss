@@ -1,0 +1,19 @@
+@import "variables";
+
+.badge {
+  border: $itemsBorder;
+  box-shadow: $baseShadow;
+  border-radius: $borderRadius;
+  padding: 8px;
+}
+.average {
+  background-color: $yellow;
+}
+
+.good {
+  background-color: $orange;
+}
+
+.awesome {
+  background-color: $red;
+}

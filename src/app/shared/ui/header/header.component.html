@@ -1,0 +1,39 @@
+<div class="header">
+  <div class="search">
+    <i class="fa fa-search"></i>
+    <input
+      type="text"
+      placeholder="{{ 'Search' | translate }}..."
+      (input)="onChangeFilter($event)"
+      [value]="titleFilter"
+      [attr.aria-label]="'Search' | translate"
+    />
+  </div>
+  <div>
+    <button
+      class="app-button"
+      (click)="clickTodayTrip.emit()"
+      aria-label="Today Trip"
+    >
+      {{ "TodayTrip" | translate }}
+    </button>
+  </div>
+  <div class="menu">
+    <span class="total"
+      >{{ paginationTotal }} {{ "tripsFound" | translate }}</span
+    >
+    <button
+      class="app-button"
+      (click)="toggleSortAndFilterMenu()"
+      [attr.aria-label]="'SortAndFilter' | translate"
+    >
+      {{ "SortAndFilter" | translate }}
+    </button>
+    <filter-modal
+      #filterModal
+      class="filter-modal"
+      [sort]="sort"
+      (changeSort)="changeSort.emit($event)"
+    ></filter-modal>
+  </div>
+</div>

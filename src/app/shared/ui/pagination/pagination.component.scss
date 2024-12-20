@@ -1,0 +1,29 @@
+@import "variables";
+
+.pagination {
+  display: flex;
+  align-items: center;
+  margin-block: 1rem;
+
+  .page-info {
+    margin-inline: 1rem;
+    font-size: 16px;
+  }
+
+  .page-select {
+    margin-inline-end: 12px;
+    padding-inline-end: 20px;
+    padding-block: 4px;
+  }
+
+  .page-button {
+    border-radius: $borderRadius;
+    padding: 4px 8px;
+    cursor: pointer;
+    transition: $backgroudColorTransition;
+
+    &:hover {
+      background-color: $buttonHoverBackground;
+    }
+  }
+}

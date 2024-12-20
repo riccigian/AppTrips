@@ -1,0 +1,19 @@
+<header-section
+  [titleFilter]="titleFilter$ | async"
+  [sort]="sort$ | async"
+  [paginationTotal]="paginationTotal$ | async"
+  (changeFilter)="onChangeFilter($event)"
+  (changeSort)="onChangeSort($event)"
+  (clickTodayTrip)="onClickTodayTrip()"
+></header-section>
+
+<trip-list
+  [isLoading]="isLoading$ | async"
+  [trips]="trips$ | async"
+  [currentPage]="currentPage$ | async"
+  [paginationLimit]="paginationLimit$ | async"
+  [paginationTotal]="paginationTotal$ | async"
+  (changePage)="onChangePage($event)"
+  (changeLimit)="onChangeLimit($event)"
+  (tripSelected)="onTripSelected($event)"
+></trip-list>

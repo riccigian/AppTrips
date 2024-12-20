@@ -1,0 +1,43 @@
+<div class="modal-content" *ngIf="isOpen" role="dialog" aria-modal="true">
+  <div class="modal-body">
+    <span id="filterModalDesc">
+      {{ "FilterAndSortDesc" | translate }}
+    </span>
+    <div>
+      <button
+        id="sortByButton"
+        class="app-button body-button"
+        (click)="isSortByMenuOpen = !isSortByMenuOpen"
+        [attr.aria-expanded]="isSortByMenuOpen"
+      >
+        {{ "SortBy" | translate }}: {{ sortAndFilterInfo.sortBy | translate }}
+      </button>
+      <div *ngIf="isSortByMenuOpen" class="sort-menu">
+        <button
+          *ngFor="let option of sortByOptions"
+          class="menu-button"
+          (click)="onSortByChange(sortByKeys[option])"
+          [class.selected]="sortByKeys[option] === sortAndFilterInfo.sortBy"
+        >
+          {{ option | translate }}
+        </button>
+      </div>
+    </div>
+    <div>
+      <button class="app-button body-button" (click)="onSortOrderChange()">
+        {{ "SortOrder" | translate }}:
+        {{ sortAndFilterInfo.sortOrder | translate }}
+      </button>
+    </div>
+    <div class="modal-footer">
+      <button
+        class="confirm-button"
+        [class.disabled]="isConfirmButtonDisabled"
+        [disabled]="isConfirmButtonDisabled"
+        (click)="confirm()"
+      >
+        {{ "Confirm" | translate }}
+      </button>
+    </div>
+  </div>
+</div>

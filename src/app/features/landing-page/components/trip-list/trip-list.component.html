@@ -1,0 +1,88 @@
+<div
+  *ngIf="!isLoading; else skeleton"
+  class="container"
+  role="list"
+  aria-label="Trip List"
+>
+  <div
+    *ngFor="let trip of trips"
+    class="item"
+    role="listitem"
+    [attr.aria-labelledby]="'trip-title-' + trip.id"
+    (click)="tripSelected.emit(trip.id)"
+  >
+    <div class="image">
+      <img
+        alt="{{ trip.title }} image"
+        src="{{ trip.thumbnailUrl }}"
+        loading="lazy"
+      />
+    </div>
+    <div class="content">
+      <div class="details">
+        <div class="title" id="trip-title-{{ trip.id }}">{{ trip.title }}</div>
+        <div>
+          {{ trip?.price ? ("From" | translate) + " " + trip?.price : "" }} €
+        </div>
+      </div>
+      <div class="badge">
+        <trip-score-badge
+          [rating]="trip.rating"
+          [nrOfRatings]="trip.nrOfRatings"
+          [co2]="trip.co2"
+        ></trip-score-badge>
+      </div>
+    </div>
+  </div>
+
+  <pagination
+    [currentPage]="currentPage"
+    [limit]="paginationLimit"
+    [total]="paginationTotal"
+    (changePage)="changePage.emit($event)"
+    (changeLimit)="changeLimit.emit($event)"
+    aria-live="polite"
+  ></pagination>
+</div>
+
+<ng-template #skeleton>
+  <div class="container" aria-label="Loading Trip List">
+    <div *ngFor="let trip of 4 | arrayConstructor" class="item">
+      <div class="image">
+        <ngx-skeleton-loader
+          appearance="circle"
+          [theme]="{ width: '200px', height: '200px', 'border-radius': '10px' }"
+        >
+        </ngx-skeleton-loader>
+      </div>
+      <div class="content">
+        <div class="details">
+          <div class="title">
+            <ngx-skeleton-loader
+              [theme]="{
+                width: '200px',
+                height: '15px'
+              }"
+            ></ngx-skeleton-loader>
+          </div>
+          <div>
+            <ngx-skeleton-loader
+              [theme]="{
+                width: '150px',
+                height: '15px'
+              }"
+            ></ngx-skeleton-loader>
+          </div>
+        </div>
+        <div class="badge">
+          <ngx-skeleton-loader
+            [theme]="{
+              width: '100px',
+              height: '25px'
+            }"
+          ></ngx-skeleton-loader>
+        </div>
+      </div>
+    </div>
+  </div>
+</ng-template>

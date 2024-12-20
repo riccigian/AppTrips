@@ -1,0 +1,31 @@
+<div class="pagination">
+  <div>
+    <span class="page-info">{{ "Display" | translate }}</span>
+    <select class="page-select" (change)="onLimitChange($event)">
+      <option *ngFor="let option of options" [selected]="limit === option">
+        {{ option }}
+      </option>
+    </select>
+  </div>
+
+  <div>
+    <button
+      class="page-button"
+      [disabled]="currentPage === 1"
+      (click)="changePage.emit(currentPage - 1)"
+    >
+      <
+    </button>
+    <span class="page-info"
+      >{{ "Page" | translate }} {{ currentPage }} {{ "of" | translate }}
+      {{ pagesCount }}</span
+    >
+    <button
+      class="page-button"
+      [disabled]="currentPage === pagesCount"
+      (click)="changePage.emit(currentPage + 1)"
+    >
+      >
+    </button>
+  </div>
+</div>

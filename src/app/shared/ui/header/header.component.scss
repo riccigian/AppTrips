@@ -1,0 +1,68 @@
+@import "variables";
+
+.header {
+  position: sticky;
+  top: 0;
+  background-color: $white;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding-inline: 10%;
+  padding-block: 1rem;
+  margin-block-end: 1rem;
+  margin-block-start: -1rem;
+  box-shadow: $baseShadow;
+  z-index: 1000;
+
+  .search {
+    .fa-search {
+      padding-inline-end: 1rem;
+      display: none;
+    }
+
+    input {
+      padding: 8px;
+      font-family: $fontFamily;
+      border: 1px solid $lightGrey;
+      border-radius: $borderRadius;
+      max-width: 30%;
+    }
+  }
+
+  .menu {
+    display: flex;
+    position: relative;
+    align-items: center;
+
+    .total {
+      padding-inline-end: 12px;
+    }
+
+    .filter-modal {
+      position: absolute;
+      right: 0;
+      top: 100%;
+      z-index: 1001;
+    }
+  }
+}
+
+/* For tablet (and desktop) view */
+@media (min-width: 768px) {
+  .header {
+    .search {
+      .fa-search {
+        display: unset;
+      }
+      input {
+        max-width: unset;
+      }
+    }
+  }
+
+  .container {
+    .item {
+      max-width: 90%;
+    }
+  }
+}

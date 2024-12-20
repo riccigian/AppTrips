@@ -1,0 +1,82 @@
+<button class="app-button home-button" (click)="goToTrips()">
+  {{ "HomePage" | translate }}
+</button>
+
+<div *ngIf="!(isLoading$ | async); else skeleton" class="trip">
+  <div class="image">
+    <img
+      alt="{{ trip.title }} image"
+      src="{{ trip.imageUrl }}"
+      loading="lazy"
+    />
+  </div>
+  <div class="content">
+    <div class="details">
+      <div class="title">{{ trip.title }}</div>
+      <div>{{ trip?.description || "" }}</div>
+      <div>
+        {{ trip?.price ? ("From" | translate) + " " + trip?.price : "" }} €
+      </div>
+      <div *ngFor="let key of getTripPropertyKeys(trip)">
+        {{ key | translate }}: {{ trip[key] }}
+      </div>
+    </div>
+    <div class="badge">
+      <trip-score-badge
+        [rating]="trip.rating"
+        [nrOfRatings]="trip.nrOfRatings"
+        [co2]="trip.co2"
+      ></trip-score-badge>
+    </div>
+  </div>
+</div>
+
+<ng-template #skeleton>
+  <div class="container">
+    <div class="trip">
+      <div class="image">
+        <ngx-skeleton-loader
+          appearance="circle"
+          [theme]="{ width: '600px', height: '800px', 'border-radius': '10px' }"
+        >
+        </ngx-skeleton-loader>
+      </div>
+      <div class="content">
+        <div class="details">
+          <div class="title">
+            <ngx-skeleton-loader
+              [theme]="{
+                width: '250px',
+                height: '25px'
+              }"
+            ></ngx-skeleton-loader>
+          </div>
+          <div>
+            <ngx-skeleton-loader
+              [theme]="{
+                width: '400px',
+                height: '15px'
+              }"
+            ></ngx-skeleton-loader>
+          </div>
+          <div *ngFor="let trip of 5 | arrayConstructor">
+            <ngx-skeleton-loader
+              [theme]="{
+                width: '150px',
+                height: '15px'
+              }"
+            ></ngx-skeleton-loader>
+          </div>
+        </div>
+        <div class="badge">
+          <ngx-skeleton-loader
+            [theme]="{
+              width: '100px',
+              height: '25px'
+            }"
+          ></ngx-skeleton-loader>
+        </div>
+      </div>
+    </div>
+  </div>
+</ng-template>
